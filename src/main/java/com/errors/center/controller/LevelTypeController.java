@@ -29,7 +29,6 @@ public class LevelTypeController {
     @GetMapping("/type/list")
     ResponseEntity<List<LevelType>> listLevels() {
         List<LevelType> response = service.listLevels();
-
         return ResponseEntity
             .status(HttpStatus.OK)
             .body(response);
