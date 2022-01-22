@@ -1,14 +1,16 @@
 package com.errors.center.service;
 
 import com.errors.center.model.LogEvent;
-import com.errors.center.service.interfaces.ILogEventService;
-import org.springframework.stereotype.Service;
 
-@Service
-public class LogEventService implements ILogEventService {
+import java.util.List;
+import java.util.Optional;
 
-    @Override
-    public LogEvent saveLog(Object log) {
-        return null;
-    }
+public interface LogEventService {
+    List<LogEvent> findAll();
+
+    Optional<LogEvent> findById(Long id);
+
+    LogEvent save(LogEvent logEvent);
+
+    void deleteById(Long id);
 }
