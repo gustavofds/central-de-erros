@@ -1,6 +1,8 @@
 package com.errors.center.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
@@ -14,34 +16,34 @@ public class LogEvent {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    private Long id;
 
     @Column(name = "description_event")
     @NotNull
     @Size(max = 255)
-    String descriptionEvent;
+    private String descriptionEvent;
 
     @Column(name = "log_event")
     @NotNull
     @Size(max = 255)
-    String logEvent;
+    private String logEvent;
 
     @Column
     @NotNull
     @Size(max = 100)
-    String origin;
+    private String origin;
 
     @NotNull
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
     @CreatedDate
-    LocalDateTime date;
+    private LocalDateTime date;
 
     @Column
     @NotNull
-    int quantity;
+    private int quantity;
 
-    @OneToOne
-    @JoinColumn(name = "level_id")
+    @ManyToOne
+    @JoinColumn(name = "level_type")
     private LevelType levelType;
 
     public LogEvent() {
