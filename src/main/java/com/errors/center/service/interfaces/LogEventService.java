@@ -1,5 +1,6 @@
-package com.errors.center.service;
+package com.errors.center.service.interfaces;
 
+import com.errors.center.dto.LogEventDTO;
 import com.errors.center.model.LogEvent;
 
 import java.util.List;
@@ -10,7 +11,7 @@ public interface LogEventService {
 
     Optional<LogEvent> findById(Long id);
 
-    LogEvent save(LogEvent logEvent);
+    LogEvent save(LogEventDTO logEvent);
 
     void deleteById(Long id);
 }

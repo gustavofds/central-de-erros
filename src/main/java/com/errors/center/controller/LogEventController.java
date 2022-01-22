@@ -1,20 +1,22 @@
 package com.errors.center.controller;
 
+import com.errors.center.dto.LogEventDTO;
+import com.errors.center.model.LevelType;
 import com.errors.center.model.LogEvent;
-import com.errors.center.service.LogEventService;
+import com.errors.center.service.interfaces.LogEventService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/logevent")
+@RequestMapping("/api/v1/logevent")
 public class LogEventController {
 
     @Autowired
     private LogEventService logEventService;
 
     @PostMapping
-    public LogEvent save(@RequestBody LogEvent logEvent) {
-        return this.logEventService.save(logEvent);
+    public LogEvent save(@RequestBody LogEventDTO log) {
+        return this.logEventService.save(log);
     }
 
     @GetMapping
