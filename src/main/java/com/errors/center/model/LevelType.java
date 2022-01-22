@@ -1,42 +1,46 @@
 package com.errors.center.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 @Entity
+//@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Table(name = "level_type")
 public class LevelType {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long level_id;
+    @Column(name = "id")
+    private Long id;
 
-    @Column
-    @NotNull
-    @Size(max = 65, message = "O nome do level não pode ultrapassar a 65 caracteres!")
-    private String level;
+    @Column(name = "level_name")
+    @NotNull(message = "O campo level não poder ser nulo!")
+    private String levelName;
 
     public LevelType() {
     }
 
-    public LevelType(String level) {
-        this.level = level;
+    public LevelType(String levelName, List<LogEvent> logEventList) {
+        this.levelName = levelName;
     }
 
-    public Long getLevel_id() {
-        return level_id;
+    public Long getId() {
+        return id;
     }
 
-    public void setLevel_id(Long level_id) {
-        this.level_id = level_id;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public String getLevel() {
-        return level;
+    public String getLevelName() {
+        return levelName;
     }
 
-    public void setLevel(String level) {
-        this.level = level;
+    public void setLevelName(String levelName) {
+        this.levelName = levelName;
     }
 }
