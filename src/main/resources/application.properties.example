@@ -6,3 +6,7 @@ spring.datasource.password=postgres123
 
 spring.jpa.hibernate.ddl-auto=update
 spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
+
+ security.oauth2.client.scope=password
+ security.oauth2.client.client-secret=
+ security.oauth2.client.client-id=

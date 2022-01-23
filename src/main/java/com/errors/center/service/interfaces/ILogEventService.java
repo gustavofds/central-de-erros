@@ -26,7 +26,7 @@ public interface ILogEventService {
 
     List<LogEvent> filterByDate(String date, Pageable pageable);
 
-    List<LogEvent> filterByQuantity(int quantity, Pageable pageable);
+    List<LogEvent> filterByQuantity(String quatityByLevel, Pageable pageable);
 
     List<LogEvent> filterByLevelType(String levelName, Pageable pageable);
 }

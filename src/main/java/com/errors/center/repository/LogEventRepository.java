@@ -30,7 +30,15 @@ public interface LogEventRepository extends CrudRepository<LogEvent, Long> {
     )
     Page<LogEvent> findByDate(String date, Pageable pageable);
 
-    Page<LogEvent> findByQuantityContaining(int quatity, Pageable pageable);
+    @Query(value = "SELECT level_type.level_name, " +
+        "COUNT(log_event.quantity) AS quantity_by_type " +
+        "FROM log_event " +
+        "INNER JOIN level_type " +
+        "ON log_event.level_type = level_type.id " +
+        "WHERE level_type.level_name = :quatityByLevel " +
+        "GROUP BY level_type.level_name"
+        ,nativeQuery = true)
+    Page<LogEvent> findByQuantity(@Param("quatityByLevel") String quatityByLevel, Pageable pageable);
 
     @Query(value = "SELECT * FROM log_event " +
         "INNER JOIN level_type " +

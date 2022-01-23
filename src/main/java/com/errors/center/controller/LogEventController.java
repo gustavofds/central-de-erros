@@ -11,12 +11,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
+
 
 @RestController
 @RequestMapping("/api/v1/logevent")
@@ -68,7 +65,7 @@ public class LogEventController {
         @RequestParam(required = false) String logEvent,
         @RequestParam(required = false) String origin,
         @RequestParam(required = false) String date,
-        @RequestParam(required = false) Integer quantity,
+        @RequestParam(required = false) String quatityByLevel,
         @RequestParam(required = false) String levelName,
         Pageable pageable
     ) {
@@ -87,8 +84,8 @@ public class LogEventController {
         if (date != null) {
             response = this.service.filterByDate(date, pageable);
         }
-        if (quantity != null) {
-            response = this.service.filterByQuantity(quantity, pageable);
+        if (quatityByLevel != null) {
+            response = this.service.filterByQuantity(quatityByLevel, pageable);
         }
         if (levelName != null) {
             response = this.service.filterByLevelType(levelName, pageable);

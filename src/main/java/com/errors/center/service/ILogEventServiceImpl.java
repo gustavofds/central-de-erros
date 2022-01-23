@@ -78,8 +78,8 @@ public class ILogEventServiceImpl implements ILogEventService {
     }
 
     @Override
-    public List<LogEvent> filterByQuantity(int quantity, Pageable pageable) {
-        return this.logEventRepository.findByQuantityContaining(quantity, pageable).getContent();
+    public List<LogEvent> filterByQuantity(String quatityByLevel, Pageable pageable) {
+        return this.logEventRepository.findByQuantity(quatityByLevel, pageable).getContent();
     }
 
     @Override
