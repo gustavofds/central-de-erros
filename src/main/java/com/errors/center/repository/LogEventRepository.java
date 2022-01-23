@@ -2,6 +2,8 @@ package com.errors.center.repository;
 
 import com.errors.center.model.LevelType;
 import com.errors.center.model.LogEvent;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
@@ -12,23 +14,23 @@ import java.util.List;
 
 @Repository
 public interface LogEventRepository extends CrudRepository<LogEvent, Long> {
-    List<LogEvent> findAll();
+    Page<LogEvent> findAll(Pageable pageable);
 
     List<LogEvent> findByDescriptionEvent(String descriptionEvent);
 
-    List<LogEvent> findByDescriptionEventContaining(String descriptionEvent);
+    Page<LogEvent> findByDescriptionEventContaining(String descriptionEvent, Pageable pageable);
 
-    List<LogEvent> findByLogEventContaining(String logEvent);
+    Page<LogEvent> findByLogEventContaining(String logEvent, Pageable pageable);
 
-    List<LogEvent> findByOriginContaining(String origin);
+    Page<LogEvent> findByOriginContaining(String origin, Pageable pageable);
 
     @Query(value = "select * from log_event " +
         "where date = ?1",
         nativeQuery = true
     )
-    List<LogEvent> findByDate(String date);
+    Page<LogEvent> findByDate(String date, Pageable pageable);
 
-    List<LogEvent> findByQuantityContaining(int quatity);
+    Page<LogEvent> findByQuantityContaining(int quatity, Pageable pageable);
 
-    List<LogEvent> findByLevelTypeContaining(String levelName);
+    Page<LogEvent> findByLevelTypeContaining(String levelName, Pageable pageable);
 }

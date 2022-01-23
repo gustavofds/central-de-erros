@@ -7,6 +7,7 @@ import com.errors.center.model.LogEvent;
 import com.errors.center.repository.LogEventRepository;
 import com.errors.center.service.interfaces.ILogEventService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -26,8 +27,8 @@ public class ILogEventServiceImpl implements ILogEventService {
     private LevelTypeService levelTypeService;
 
     @Override
-    public List<LogEvent> findAll() {
-        return this.logEventRepository.findAll();
+    public List<LogEvent> findAll(Pageable pageable) {
+        return this.logEventRepository.findAll(pageable).getContent();
     }
 
     @Override
@@ -57,32 +58,32 @@ public class ILogEventServiceImpl implements ILogEventService {
     }
 
     @Override
-    public List<LogEvent> filterByDescription(String descriptionEvent) {
-        return this.logEventRepository.findByDescriptionEventContaining(descriptionEvent);
+    public List<LogEvent> filterByDescription(String descriptionEvent, Pageable pageable) {
+        return this.logEventRepository.findByDescriptionEventContaining(descriptionEvent, pageable).getContent();
     }
 
     @Override
-    public List<LogEvent> filterByLogEvent(String logEvent) {
-        return this.logEventRepository.findByLogEventContaining(logEvent);
+    public List<LogEvent> filterByLogEvent(String logEvent, Pageable pageable) {
+        return this.logEventRepository.findByLogEventContaining(logEvent, pageable).getContent();
     }
 
     @Override
-    public List<LogEvent> filterByOrigin(String origin) {
-        return this.logEventRepository.findByOriginContaining(origin);
+    public List<LogEvent> filterByOrigin(String origin, Pageable pageable) {
+        return this.logEventRepository.findByOriginContaining(origin, pageable).getContent();
     }
 
     @Override
-    public List<LogEvent> filterByDate(String date) {
-        return this.logEventRepository.findByDate(date);
+    public List<LogEvent> filterByDate(String date, Pageable pageable) {
+        return this.logEventRepository.findByDate(date, pageable).getContent();
     }
 
     @Override
-    public List<LogEvent> filterByQuantity(int quantity) {
-        return this.logEventRepository.findByQuantityContaining(quantity);
+    public List<LogEvent> filterByQuantity(int quantity, Pageable pageable) {
+        return this.logEventRepository.findByQuantityContaining(quantity, pageable).getContent();
     }
 
     @Override
-    public List<LogEvent> filterByLevelType(String levelName) {
-        return this.logEventRepository.findByLevelTypeContaining(levelName);
+    public List<LogEvent> filterByLevelType(String levelName, Pageable pageable) {
+        return this.logEventRepository.findByLevelTypeContaining(levelName, pageable).getContent();
     }
 }
