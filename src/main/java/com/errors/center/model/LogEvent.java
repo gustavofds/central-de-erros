@@ -32,7 +32,7 @@ public class LogEvent {
     private String origin;
 
     @NotNull
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     @CreatedDate
     private LocalDateTime date;
 
