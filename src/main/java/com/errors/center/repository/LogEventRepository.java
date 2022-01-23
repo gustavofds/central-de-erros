@@ -32,5 +32,10 @@ public interface LogEventRepository extends CrudRepository<LogEvent, Long> {
 
     Page<LogEvent> findByQuantityContaining(int quatity, Pageable pageable);
 
-    Page<LogEvent> findByLevelTypeContaining(String levelName, Pageable pageable);
+    @Query(value = "SELECT * FROM log_event " +
+        "INNER JOIN level_type " +
+        "ON log_event.level_type = level_type.id " +
+        "WHERE level_type.level_name = :levelName",
+        nativeQuery = true)
+    Page<LogEvent> findByLevelType(@Param("levelName") String levelName, Pageable pageable);
 }

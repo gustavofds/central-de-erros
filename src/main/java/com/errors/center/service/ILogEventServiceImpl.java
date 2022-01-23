@@ -84,6 +84,6 @@ public class ILogEventServiceImpl implements ILogEventService {
 
     @Override
     public List<LogEvent> filterByLevelType(String levelName, Pageable pageable) {
-        return this.logEventRepository.findByLevelTypeContaining(levelName, pageable).getContent();
+        return this.logEventRepository.findByLevelType(levelName, pageable).getContent();
     }
 }
