@@ -9,6 +9,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -24,14 +25,10 @@ public interface LogEventRepository extends CrudRepository<LogEvent, Long> {
 
     Page<LogEvent> findByOriginContaining(String origin, Pageable pageable);
 
-    @Query(value = "select * from log_event " +
-        "where date = ?1",
-        nativeQuery = true
-    )
-    Page<LogEvent> findByDate(String date, Pageable pageable);
+    Page<LogEvent> findByDate(LocalDate date, Pageable pageable);
 
     @Query(value = "SELECT level_type.level_name, " +
-        "COUNT(log_event.quantity) AS quantity_by_type " +
+        "COUNT(log_event.quantity) AS quantity " +
         "FROM log_event " +
         "INNER JOIN level_type " +
         "ON log_event.level_type = level_type.id " +

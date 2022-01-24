@@ -6,7 +6,7 @@ import org.springframework.data.annotation.CreatedDate;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "log_event")
@@ -34,7 +34,7 @@ public class LogEvent {
     @NotNull
     @JsonFormat(pattern = "yyyy-MM-dd")
     @CreatedDate
-    private LocalDateTime date;
+    private LocalDate date;
 
     @Column
     @NotNull
@@ -47,7 +47,7 @@ public class LogEvent {
     public LogEvent() {
     }
 
-    public LogEvent(String descriptionEvent, String logEvent, String origin, LocalDateTime date, int quantity, LevelType levelType) {
+    public LogEvent(String descriptionEvent, String logEvent, String origin, LocalDate date, int quantity, LevelType levelType) {
         this.descriptionEvent = descriptionEvent;
         this.logEvent = logEvent;
         this.origin = origin;
@@ -88,11 +88,11 @@ public class LogEvent {
         this.origin = origin;
     }
 
-    public LocalDateTime getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(LocalDateTime date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 

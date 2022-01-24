@@ -2,6 +2,7 @@ package com.errors.center.dto;
 
 import com.errors.center.model.LevelType;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class LogDTO {
@@ -9,14 +10,14 @@ public class LogDTO {
     private Long id;
     private String descriptionEvent;
     private String origin;
-    private LocalDateTime date;
+    private LocalDate date;
     private int quantity;
     private LevelType levelType;
 
     public LogDTO() {
     }
 
-    public LogDTO(Long id, String descriptionEvent, String origin, LocalDateTime date, int quantity, LevelType levelType) {
+    public LogDTO(Long id, String descriptionEvent, String origin, LocalDate date, int quantity, LevelType levelType) {
         this.id = id;
         this.descriptionEvent = descriptionEvent;
         this.origin = origin;
@@ -49,11 +50,11 @@ public class LogDTO {
         this.origin = origin;
     }
 
-    public LocalDateTime getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(LocalDateTime date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 

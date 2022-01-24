@@ -12,7 +12,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.sql.Date;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
@@ -39,7 +42,7 @@ public class ILogEventServiceImpl implements ILogEventService {
     @Override
     public LogEvent save(LogEventDTO log) {
         LevelType levelType = levelTypeService.getLevelTypeById(log.getLevelTypeId());
-        LocalDateTime date = LocalDateTime.now();
+        LocalDate date = LocalDate.now();
 
         LogEvent logEvent = new LogEvent();
         logEvent.setDate(date);
@@ -74,7 +77,8 @@ public class ILogEventServiceImpl implements ILogEventService {
 
     @Override
     public List<LogEvent> filterByDate(String date, Pageable pageable) {
-        return this.logEventRepository.findByDate(date, pageable).getContent();
+        LocalDate convertDate = LocalDate.parse(date, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        return this.logEventRepository.findByDate(convertDate, pageable).getContent();
     }
 
     @Override
